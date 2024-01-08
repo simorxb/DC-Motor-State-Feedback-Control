@@ -24,10 +24,10 @@ else
 end
 
 // Compute state feedback gains using pole placement
-K = ppol(A, B, [8 20 100]);
+K = ppol(A, B, [-5 -20 -100]);
 
 // Find setpoint gain needed
-Kr = 1/(-C*inv(A+B*K)*B+D);
+Kr = 1/((C + D*K)*inv(-A+B*K)*B+D);
 
 // Assign context
 scs_m.props.context = ctx;
